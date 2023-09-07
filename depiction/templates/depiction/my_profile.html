@@ -1,0 +1,128 @@
+{% extends 'depict_comp\main.html' %}
+{% load static %} 
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/otherprofile.css' %}" />
+{% endblock %}
+
+<!-- Title -->
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top:20px;">
+
+    {% include "depict_comp\navbar.html" %}
+
+    <div class="row m-b-r m-t-3"  style="margin-top:40px;">
+        <div class="col-md-2 offset-md-1">
+            <img src="{{ page_user.profile_image.url }}" alt="profile_image" class="img-circle rounded-circle img-fluid" style="height: 180px; width: 180px;">
+        </div>
+        <div class="col-md-9 p-t-2"  style="margin-top:20px;">
+            <h2 class="h2-responsive">@{{page_user.username}} </h2>
+            {% comment %} <form action="/follow" method="POST">
+                {% csrf_token %}
+            <input type="hidden" value="{{page_user.username}}" name="user" />
+            <input type="hidden" value="{{request.user.username}}" name="follower" />
+
+            {% if page_user.id != request.user.id %}
+            <a data-ripple="">
+            <button type="submit" class="btn btn-success follow-btn" style="position: relative;left: 300px; bottom: 40px;">{{button_text}}</button></h2>
+            </a>
+            {% endif %}
+
+            <p class="profile-name">{{page_user.fname}}</p>
+            <p style="position: relative;left: 20px;">{{page_user.description}}</p>
+            <ul class="flex-menu">
+                
+                <li><strong>{{num_posts}}</strong> posts</li>
+                <li><strong>{{user_followers}}</strong> followers</li>
+                <li><strong>{{user_following}}</strong> following</li>
+            </ul>
+           </form> {% endcomment %}
+        </div>
+    </div>
+    <hr class="border border-1 border-success">
+
+    {% comment %} <div class="row">
+        {% for post in logged_in_user_posts %}
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="view overlay hm-black-light m-b-2">
+                <a href="{{post.image.url}}">
+                <img src="{{post.image.url}}" class="img-fluid cursor-pointer" alt="" style="height: 250px;">
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div> {% endcomment %}
+
+        {% comment %}⬇️ Used previously ⬇️{% endcomment %}
+        {% comment %} <button class="btn btn-primary btn-block" style="width:200px;position: relative;left:25%;
+            background: linear-gradient(to right,#623dc6 ,#9a35dd );">
+            <a href="{% url 'depiction:edit_profile_page' user.profile.id %}">Edit Profile</a>
+        </button>
+        <button class="btn btn-primary btn-block" style="width:200px;position: relative;left:45%;
+            background: linear-gradient(to right,#623dc6 ,#9a35dd );">
+            <a href="{% url 'depiction:password' %}">Change Password</a>
+        </button> {% endcomment %}
+        {% comment %}⬆️ Used previously ⬆️{% endcomment %}
+
+
+        <div class="container">
+            <div class="row align-items-start">
+
+              <div class="col d-flex align-items-center justify-content-center">
+                    <input 
+                        class="btn btn-primary btn-block" 
+                        type="button" 
+                        value="Edit Profile" 
+                        onclick="window.location.href='{% url 'depiction:edit_profile_page' user.profile.id %}'"
+                        style="
+                            background: linear-gradient(to right,#623dc6 ,#9a35dd );
+                            text-align:center;
+                    ">
+              </div>
+
+              <div class="col d-flex align-items-center justify-content-center"> 
+                    <input 
+                        class="btn btn-primary btn-block" 
+                        type="button" 
+                        value="Change Password" 
+                        onclick="window.location.href='{% url 'depiction:password' %}'"
+                        style="
+                            background: linear-gradient(to right,#623dc6 ,#9a35dd );
+                            text-align:center;
+                    ">
+              </div>
+              
+            </div>
+        </div>
+
+    <hr class="border border-1 border-success">
+
+
+    
+
+</div>
+
+<div class="container shadow p-3 mb-5 bg-body rounded" style="width: 50%;margin-top: 30px;">
+
+    <br>
+    
+    {% if page_user.first_name != null and page_user.last_name != null %}
+    {% if page_user.first_name != "" and page_user.last_name != "" %}
+    <h6>Full name: {{page_user.first_name}} {{page_user.last_name}}</h6><br>
+    {% endif %}
+    {% endif %}
+
+    {% if page_user.email != null and page_user.email != "" %}
+    <h6>Email: {{page_user.email}}</h6><br>
+    {% endif %}
+    <h4></h4><br>
+
+</div>
+
+{% endblock %}
+

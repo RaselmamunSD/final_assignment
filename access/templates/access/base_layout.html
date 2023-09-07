@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>To-Do</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'logo/logo.png' %}">
+
+    <!-- CSS Links -->
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'access\bulma_lux.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- JS Links -->
+    <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"
+    ></script>
+    {% block extrahead %}
+    {% endblock %}
+</head>
+<body>
+
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
